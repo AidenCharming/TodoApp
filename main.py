@@ -1,4 +1,4 @@
-from Modules.functions import read_todos, write_todos
+# from Modules.functions import read_todos, write_todos
 
 while True:
     user_action = input("Type add, show, edit, complete, or exit: ")
