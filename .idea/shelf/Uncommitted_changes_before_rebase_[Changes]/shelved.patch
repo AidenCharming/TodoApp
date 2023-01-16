@@ -1,0 +1,16 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from Modules.functions import read_todos, write_todos\r\n\r\nwhile True:\r\n    user_action = input(\"Type add, show, edit, complete, or exit: \")\r\n    user_action = user_action.strip()\r\n\r\n    if user_action.startswith(\"add\"):\r\n        todo = user_action[4:]\r\n        todos = read_todos()\r\n        todos.append(todo + \"\\n\")\r\n        write_todos(todos)\r\n\r\n    elif user_action.startswith(\"show\"):\r\n        todos = read_todos()\r\n\r\n        for index, item in enumerate(todos):\r\n            item = item.strip(\"\\n\")\r\n            print(f\"{index+1}. {item.title()}\")\r\n\r\n    elif user_action.startswith(\"edit\"):\r\n        try:\r\n            number = int(user_action[5:])\r\n            number = number - 1\r\n            todos = read_todos()\r\n            new_todo = input(\"Enter new todo: \")\r\n            todos[number] = new_todo + \"\\n\"\r\n            write_todos(todos)\r\n        except ValueError:\r\n            print(\"Your command is not valid.\")\r\n            continue\r\n\r\n    elif user_action.startswith(\"complete\"):\r\n        try:\r\n            number = int(user_action[9:])\r\n            todos = read_todos()\r\n            index = number - 1\r\n            todo_to_remove = todos[index].strip(\"\\n\")\r\n            todos.pop(index)\r\n            write_todos(todos)\r\n            message = f\"Todo {todo_to_remove} was removed from the list.\"\r\n            print(message)\r\n        except IndexError:\r\n            print(\"There is no item with that number\")\r\n            continue\r\n\r\n    elif user_action.startswith(\"exit\"):\r\n        break\r\n\r\n    else:\r\n        print(\"Command is not valid.\")\r\n\r\nprint(\"Bye!\")\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision dd4175c6cf55eb21de7b5ce57862bf8b753404fa)
++++ b/main.py	(date 1673839376282)
+@@ -1,4 +1,4 @@
+-from Modules.functions import read_todos, write_todos
++# from Modules.functions import read_todos, write_todos
+ 
+ while True:
+     user_action = input("Type add, show, edit, complete, or exit: ")
